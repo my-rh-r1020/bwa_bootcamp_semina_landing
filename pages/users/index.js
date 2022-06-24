@@ -1,3 +1,4 @@
+import Router from "next/router";
 import Head from "next/head";
 import React from "react";
 
@@ -8,6 +9,11 @@ import Navbar from "../../components/Navbar";
 import styles from "../../styles/Home.module.css";
 
 export default function UsersPage({ data }) {
+  // Handle Detail User
+  const handleDetailUser = (id) => {
+    Router.push(`users/${id}`);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -22,7 +28,7 @@ export default function UsersPage({ data }) {
 
       <ul>
         {data.map((user) => (
-          <div key={user.id}>
+          <div key={user.id} onClick={() => handleDetailUser(user.id)}>
             <li>
               <b>Nama</b> : {user.name}
               <br /> Email : {user.email}
@@ -35,6 +41,7 @@ export default function UsersPage({ data }) {
 }
 
 // Fetching Data with getServerSideProps()
+// getServerSideProps() untuk Dynamic Data
 export async function getServerSideProps(context) {
   const res = await fetch("https://jsonplaceholder.typicode.com/users"),
     data = await res.json();
