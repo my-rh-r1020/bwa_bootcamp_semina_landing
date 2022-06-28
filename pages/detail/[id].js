@@ -1,15 +1,19 @@
 // Import Libraries
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 // Import Components
-import Header from "../../components/Header";
+import Header from "../../components/HeaderPage";
 import BrandSection from "../../components/Brand";
 import CardEventSection from "../../components/CardEvent";
 import StoriesSection from "../../components/Stories";
 import StatisticsSection from "../../components/Statistics";
 import Footer from "../../components/Footer";
+import DetailPage from "../../components/DetailPage";
 
 export default function DetailEventPage() {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -19,13 +23,13 @@ export default function DetailEventPage() {
       </Head>
 
       {/* Header */}
-      <Header />
+      <Header detail />
 
-      {/* Brand Section */}
-      <BrandSection />
+      {/* Detail Content Section */}
+      <DetailPage />
 
       {/* Grow Today Section */}
-      <CardEventSection data={[]} subtitle="Grow Today" title="Featured Events" />
+      <CardEventSection data={[]} subtitle="Next One" title="Similiar Events" />
 
       {/* Stories Section */}
       <StoriesSection />

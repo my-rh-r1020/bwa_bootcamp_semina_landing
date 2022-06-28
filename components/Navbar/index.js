@@ -19,12 +19,6 @@ export default function Navbar() {
             <NavLink href="/browse">Browse</NavLink>
             <NavLink href="#stories">Stories</NavLink>
             <NavLink href="#about">About</NavLink>
-            {/* <a className="nav-link active" aria-current="page" href="/">
-              Home
-            </a> */}
-            {/* <a className="nav-link" href="#">
-              About
-            </a> */}
           </div>
           <div className="d-grid">
             <a className="btn-navy" href="signin.html">

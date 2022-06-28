@@ -2,7 +2,7 @@
 import Head from "next/head";
 
 // Import Components
-import Header from "../components/Header";
+import Header from "../components/HeaderPage";
 import BrandSection from "../components/Brand";
 import CardEventSection from "../components/CardEvent";
 import StoriesSection from "../components/Stories";
