@@ -22,7 +22,7 @@ export default function Home() {
       <Header />
 
       {/* Brand Section */}
-      <BrandSection />
+      <BrandSection landing />
 
       {/* Grow Today Section */}
       <CardEventSection data={[]} subtitle="Grow Today" title="Featured Events" />
