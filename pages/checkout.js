@@ -1,9 +1,9 @@
 import Head from "next/head";
 
 // Import Components
-import Header from "../../components/HeaderPage";
-import CheckoutSection from "../../components/CheckoutPage";
-import Footer from "../../components/Footer";
+import Header from "../components/HeaderPage";
+import CheckoutSection from "../components/CheckoutPage";
+import Footer from "../components/Footer";
 
 export default function Checkout() {
   return (

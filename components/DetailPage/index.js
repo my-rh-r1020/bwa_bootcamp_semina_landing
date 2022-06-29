@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function DetailPage() {
@@ -81,9 +82,9 @@ export default function DetailPage() {
             <div className="d-flex gap-3 align-items-center card-details">
               <img src="/icons/ic-calendar.svg" alt="semina" /> 22 Agustus 2022
             </div>
-            <a href="/detail/checkout" className="btn-green">
-              Join Now
-            </a>
+            <Link href="/checkout">
+              <a className="btn-green">Join Now</a>
+            </Link>
           </div>
         </div>
       </div>

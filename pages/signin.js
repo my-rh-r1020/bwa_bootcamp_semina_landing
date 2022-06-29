@@ -4,6 +4,7 @@ import Head from "next/head";
 import Header from "../components/HeaderPage";
 import SigninPage from "../components/SigninPage";
 import BrandSection from "../components/Brand";
+import Navbar from "../components/Navbar";
 
 export default function Signin() {
   return (
@@ -14,8 +15,11 @@ export default function Signin() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Header */}
-      <Header signin />
+      {/* Navbar */}
+      <section className="bg-navy">
+        {/* <Header signin /> */}
+        <Navbar signin />
+      </section>
 
       {/* Form Signin */}
       <SigninPage />

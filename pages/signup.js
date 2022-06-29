@@ -4,6 +4,7 @@ import Head from "next/head";
 import Header from "../components/HeaderPage";
 import SignupSection from "../components/SignupPage";
 import BrandSection from "../components/Brand";
+import Navbar from "../components/Navbar";
 
 export default function Signup() {
   return (
@@ -14,8 +15,11 @@ export default function Signup() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Header */}
-      <Header signup />
+      {/* Navbar */}
+      {/* <Header signup /> */}
+      <section className="bg-navy">
+        <Navbar />
+      </section>
 
       {/* Form Signup */}
       <SignupSection />
