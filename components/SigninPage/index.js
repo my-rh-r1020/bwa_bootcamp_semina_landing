@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Signin() {
@@ -24,15 +25,12 @@ export default function Signin() {
               <input type="password" className="form-control" id="password" placeholder="Type your password" />
             </div>
             <div className="d-grid mt-2 gap-4">
-              {/* <!-- <button className="btn-green">
-                      Sign In
-                  </button> --> */}
-              <a href="checkout-authenticated.html" className="btn-green">
-                Sign In
-              </a>
-              <a href="/signup" className="btn-navy">
-                Create New Account
-              </a>
+              <Link href="/checkout-authenticated">
+                <a className="btn-green">Sign In</a>
+              </Link>
+              <Link href="/signup">
+                <a className="btn-navy">Create New Account</a>
+              </Link>
             </div>
           </form>
         </div>

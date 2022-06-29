@@ -2,8 +2,8 @@ import React from "react";
 import HeroBanner from "../Hero";
 import Navbar from "../Navbar";
 
-export default function Header({ detail, signin, signup }) {
-  if (detail || signup) {
+export default function Header({ detail, signin, signup, checkout, authenticated }) {
+  if (signup || checkout) {
     return (
       <section className="bg-navy">
         {/* Navbar */}
@@ -12,10 +12,13 @@ export default function Header({ detail, signin, signup }) {
     );
   } else if (signin) {
     return (
-      <section className="bg-navy">
-        {/* Navbar */}
-        <Navbar signin />
-      </section>
+      // Navbar
+      <Navbar signin />
+    );
+  } else if (authenticated) {
+    return (
+      // Navbar
+      <Navbar authenticated />
     );
   }
   return (

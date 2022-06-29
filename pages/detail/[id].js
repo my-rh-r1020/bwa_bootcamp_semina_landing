@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 
 // Import Components
 import Header from "../../components/HeaderPage";
-import BrandSection from "../../components/Brand";
 import CardEventSection from "../../components/CardEvent";
 import StoriesSection from "../../components/Stories";
 import StatisticsSection from "../../components/Statistics";
 import Footer from "../../components/Footer";
 import DetailPage from "../../components/DetailPage";
+import Navbar from "../../components/Navbar";
 
 export default function DetailEventPage() {
   const router = useRouter();
@@ -22,8 +22,13 @@ export default function DetailEventPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Header */}
-      <Header detail />
+      {/* Header v1 */}
+      {/* <Header detail /> */}
+
+      {/* Header v2 */}
+      <section className="bg-navy">
+        <Navbar />
+      </section>
 
       {/* Detail Content Section */}
       <DetailPage />

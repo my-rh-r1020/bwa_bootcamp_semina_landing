@@ -81,7 +81,7 @@ export default function DetailPage() {
             <div className="d-flex gap-3 align-items-center card-details">
               <img src="/icons/ic-calendar.svg" alt="semina" /> 22 Agustus 2022
             </div>
-            <a href="checkout.html" className="btn-green">
+            <a href="/detail/checkout" className="btn-green">
               Join Now
             </a>
           </div>
