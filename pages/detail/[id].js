@@ -29,10 +29,10 @@ export default function DetailEventPage({ data }) {
       </section>
 
       {/* Detail Content Section */}
-      <DetailPage />
+      <DetailPage data={data} />
 
       {/* Grow Today Section */}
-      <CardEventSection data={data} subtitle="Next One" title="Similiar Events" />
+      <CardEventSection data={[]} subtitle="Next One" title="Similiar Events" />
 
       {/* Stories Section */}
       <StoriesSection />
@@ -47,7 +47,8 @@ export default function DetailEventPage({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const reqServer = await getData(`api/v1/participants/landing-page`),
+  // Fetch API
+  const reqServer = await getData(`api/v1/participants/detail-page/${context.params.id}`),
     res = reqServer.data;
 
   console.log(res);

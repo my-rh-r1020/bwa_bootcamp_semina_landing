@@ -16,13 +16,13 @@ export default function CardEventSection({ data, title, subtitle }) {
           {data.map((data, i) => (
             <div className="col-lg-3 col-md-6 col-12" key={i}>
               <div className="card-grow h-100">
-                <span class="badge-pricing">Rp {data.price === 0 ? "Free" : `${data.price}`}</span>
+                <span className="badge-pricing">Rp {data.price === 0 ? "Free" : `${data.price}`}</span>
                 <img src={`${process.env.NEXT_PUBLIC_API_COVER_EVENT}/${data.cover}`} alt="semina" />
-                <div class="card-content">
-                  <div class="card-title">{data.title}</div>
-                  <div class="card-subtitle">{data.category.name}</div>
-                  <div class="description">
-                    {data.venueName} <br /> {moment(data.date).format("DD MMM YYYY, h:mm a")}
+                <div className="card-content">
+                  <div className="card-title">{data.title}</div>
+                  <div className="card-subtitle">{data.category.name}</div>
+                  <div className="description">
+                    {data.venueName} <br /> {moment(data.date).format("DD MMM YYYY, H:mm")} WIB
                   </div>
                   <Link href={`/detail/${data._id}`}>
                     <a className="stretched-link"></a>
