@@ -1,6 +1,7 @@
 // Import Libraries
 import React from "react";
 import Link from "next/link";
+import moment from "moment";
 
 // Import Components
 import CardTitle from "../CardTitle";
@@ -12,16 +13,18 @@ export default function CardEventSection({ data, title, subtitle }) {
         <CardTitle subtitle={subtitle} title={title} />
         <div className="mt-5 row gap">
           {/* <!-- CARD 1 --> */}
-          {["", "", "", ""].map((data, i) => (
+          {data.map((data, i) => (
             <div className="col-lg-3 col-md-6 col-12" key={i}>
               <div className="card-grow h-100">
-                <span class="badge-pricing">$229</span>
-                <img src="/images/card-1.png" alt="semina" />
+                <span class="badge-pricing">Rp {data.price === 0 ? "Free" : `${data.price}`}</span>
+                <img src={`${process.env.NEXT_PUBLIC_API_COVER_EVENT}/${data.cover}`} alt="semina" />
                 <div class="card-content">
-                  <div class="card-title">Learn Jira for Sprint Design Venture</div>
-                  <div class="card-subtitle">Product Design</div>
-                  <div class="description">Bandung, 22 Jan 2022</div>
-                  <Link href={`/detail/${1}`}>
+                  <div class="card-title">{data.title}</div>
+                  <div class="card-subtitle">{data.category.name}</div>
+                  <div class="description">
+                    {data.venueName} <br /> {moment(data.date).format("DD MMM YYYY, h:mm a")}
+                  </div>
+                  <Link href={`/detail/${data._id}`}>
                     <a className="stretched-link"></a>
                   </Link>
                 </div>

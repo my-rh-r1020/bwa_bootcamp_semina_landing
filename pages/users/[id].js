@@ -44,8 +44,6 @@ export async function getStaticProps({ params }) {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`),
     user = await res.json();
 
-  console.log(user);
-
   // Pass post data via props
   return { props: { user } };
 }

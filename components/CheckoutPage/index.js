@@ -68,8 +68,7 @@ export default function Checkout({ authenticated }) {
           <div className="personal-details">
             <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-lg-center">
               <div className="form-title col-lg-8">
-                <span>01</span>
-                <div>Personal Details</div>
+                <h4>Personal Details</h4>
               </div>
             </div>
             <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-center">
@@ -110,8 +109,7 @@ export default function Checkout({ authenticated }) {
           <div className="payment-method mt-4">
             <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-lg-center">
               <div className="form-title col-lg-8">
-                <span>02</span>
-                <div>Payment Method</div>
+                <h4>Payment Method</h4>
               </div>
             </div>
             <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-center gy-4 gy-md-0">

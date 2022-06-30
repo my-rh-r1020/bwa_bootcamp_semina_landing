@@ -1,6 +1,23 @@
-import React from "react";
+// Import Library
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+
+// Import Components
+import Button from "../Button";
+import TextInput from "../TextInput";
 
 export default function Signup() {
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", password: "", role: "" }),
+    router = useRouter();
+
+  // Handle Change
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Handle Submit
+  const handleSubmit = () => {};
+
   return (
     <section class="login header bg-navy">
       <div class="container">
@@ -16,44 +33,24 @@ export default function Signup() {
             </p>
           </div>
           <div class="col-md-6">
-            <form action="" class="form-login d-flex flex-column mt-4 mt-md-0">
+            <form class="form-login d-flex flex-column mt-4 mt-md-0">
               {/* <!-- First Name --> */}
-              <div class="d-flex flex-column align-items-start">
-                <label for="first_name" class="form-label">
-                  First Name
-                </label>
-                <input type="text" placeholder="First name here" class="form-control" id="first_name" />
-              </div>
+              <TextInput label="First Name" type="text" value={form.firstName} placeholder="First name here" onChange={handleChange} />
+
               {/* <!-- Last Name --> */}
-              <div class="d-flex flex-column align-items-start">
-                <label for="last_name" class="form-label">
-                  Last Name
-                </label>
-                <input type="text" placeholder="Last name here" class="form-control" id="last_name" />
-              </div>
+              <TextInput label="Last Name" type="text" value={form.lastName} placeholder="Last name here" onChange={handleChange} />
+
               {/* <!-- Email --> */}
-              <div class="d-flex flex-column align-items-start">
-                <label for="email_address" class="form-label">
-                  Email
-                </label>
-                <input type="email" class="form-control" id="email_address" placeholder="semina@bwa.com" />
-              </div>
+              <TextInput label="Email" type="email" value={form.email} placeholder="semina@bwa.com" onChange={handleChange} />
+
               {/* <!-- Password --> */}
-              <div class="d-flex flex-column align-items-start">
-                <label for="password" class="form-label">
-                  Password (6 characters)
-                </label>
-                <input type="password" class="form-control" id="password" placeholder="Type your password" />
-              </div>
+              <TextInput label="Password (6 characters)" type="password" value={form.password} placeholder="Type your password" onChange={handleChange} />
+
               {/* <!-- Role --> */}
-              <div class="d-flex flex-column align-items-start">
-                <label for="role" class="form-label">
-                  Role
-                </label>
-                <input type="text" class="form-control" id="role" placeholder="ex: Product Designer" />
-              </div>
+              <TextInput label="Role" type="text" value={form.role} placeholder="ex: Product Designer" onChange={handleChange} />
+
               <div class="d-grid mt-2">
-                <button class="btn-green">Sign Up</button>
+                <Button className="btn-green" children="Sign Up" action={() => handleSubmit()} />
               </div>
             </form>
           </div>

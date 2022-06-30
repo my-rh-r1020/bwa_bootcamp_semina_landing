@@ -1,7 +1,22 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function DetailPage() {
+import Button from "../Button";
+
+export default function DetailPage({ data }) {
+  const router = useRouter();
+
+  // Handle Detail Event
+  const handleDetailUser = (_id) => {
+    router.push(`detail/${_id}`);
+  };
+
+  // Handle Submit
+  const handleSubmit = (id) => {
+    router.push("/checkout");
+  };
+
   return (
     <>
       <div class="preview-image bg-navy text-center">
@@ -82,9 +97,8 @@ export default function DetailPage() {
             <div className="d-flex gap-3 align-items-center card-details">
               <img src="/icons/ic-calendar.svg" alt="semina" /> 22 Agustus 2022
             </div>
-            <Link href="/checkout">
-              <a className="btn-green">Join Now</a>
-            </Link>
+
+            <Button className="btn-green" children="Join Now" action={() => handleSubmit()} />
           </div>
         </div>
       </div>

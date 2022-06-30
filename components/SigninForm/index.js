@@ -11,17 +11,19 @@ export default function FormSignin() {
   const [form, setForm] = useState({ email: "", password: "" }),
     router = useRouter();
 
+  // Handle Change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Handle Submit
   const handleSubmit = () => {
     try {
     } catch (err) {}
   };
 
   return (
-    <form action="" className="form-login d-flex flex-column mt-4 mt-md-0 p-30">
+    <form className="form-login d-flex flex-column mt-4 mt-md-0 p-30">
       {/* <!-- Email --> */}
       <TextInput label="Email" type="email" value={form.email} placeholder="semina@bwa.com" onChange={handleChange} />
       {/* <!-- Password --> */}

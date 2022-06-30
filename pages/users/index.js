@@ -43,7 +43,9 @@ export default function UsersPage({ data }) {
 // Fetching Data with getServerSideProps()
 // getServerSideProps() untuk Dynamic Data
 export async function getServerSideProps(context) {
+  // Fetch API
   const res = await fetch("https://jsonplaceholder.typicode.com/users"),
+    // Covert API Data to JSON
     data = await res.json();
 
   // if (!data) return { notFound: true };

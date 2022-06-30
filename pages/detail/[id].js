@@ -1,6 +1,6 @@
 // Import Libraries
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { getData } from "../../utils/fetchData";
 
 // Import Components
 import Header from "../../components/HeaderPage";
@@ -11,9 +11,7 @@ import Footer from "../../components/Footer";
 import DetailPage from "../../components/DetailPage";
 import Navbar from "../../components/Navbar";
 
-export default function DetailEventPage() {
-  const router = useRouter();
-
+export default function DetailEventPage({ data }) {
   return (
     <>
       <Head>
@@ -34,7 +32,7 @@ export default function DetailEventPage() {
       <DetailPage />
 
       {/* Grow Today Section */}
-      <CardEventSection data={[]} subtitle="Next One" title="Similiar Events" />
+      <CardEventSection data={data} subtitle="Next One" title="Similiar Events" />
 
       {/* Stories Section */}
       <StoriesSection />
@@ -46,4 +44,13 @@ export default function DetailEventPage() {
       <Footer />
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const reqServer = await getData(`api/v1/participants/landing-page`),
+    res = reqServer.data;
+
+  console.log(res);
+
+  return { props: { data: res } };
 }
