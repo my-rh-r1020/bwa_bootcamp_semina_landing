@@ -217,7 +217,8 @@ export default function Navbar({ signin }) {
           </div>
           {/* Cek router Signin */}
           {router.pathname !== pathSignin && (
-            <div className={token ? "navbar-nav ms-auto" : "d-grid"}>
+            <div className="navbar-nav ms-auto">
+              {/* <div className={token ? "navbar-nav ms-auto" : "d-grid"}> */}
               {token ? (
                 // {/* Profile Navbar */}
                 <div className="nav-item dropdown d-flex flex-column flex-lg-row align-items-lg-center authenticated gap-3">

@@ -33,8 +33,8 @@ export default function DetailPage({ data }) {
             <div className="keypoints">
               {/* <!-- Key 1 --> */}
               {data.keypoint.map((keypoint, i) => (
-                <div className="d-flex align-items-start gap-3">
-                  <img src="/icons/ic-check.svg" alt="semina" key={i} />
+                <div className="d-flex align-items-start gap-3" key={i}>
+                  <img src="/icons/ic-check.svg" alt="semina" />
                   <span>{keypoint}</span>
                 </div>
               ))}
