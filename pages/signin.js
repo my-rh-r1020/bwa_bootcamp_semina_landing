@@ -6,6 +6,7 @@ import Header from "../components/HeaderPage";
 import SigninPage from "../components/SigninPage";
 import BrandSection from "../components/Brand";
 import Navbar from "../components/Navbar";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function Signin() {
   return (
@@ -35,7 +36,9 @@ export default function Signin() {
 export async function getServerSideProps(context) {
   const { token } = context.req.cookies;
 
-  console.log(token);
+  if (token) {
+    return { redirect: { destination: "/", permanent: false } };
+  }
 
   return { props: { data: [] } };
 }

@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import "../styles/globals.css";
-import styles from "../styles/main.css";
+import "../styles/main.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
 
         {/* SASS CSS */}
         {/* <link rel="stylesheet" href="main.css" /> */}
-        <link rel="stylesheet" href={styles} />
+        {/* <link rel="stylesheet" href={styles} /> */}
 
         {/* Script Responsive View */}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
