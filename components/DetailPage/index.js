@@ -32,10 +32,12 @@ export default function DetailPage({ data }) {
             </div>
             <div className="keypoints">
               {/* <!-- Key 1 --> */}
-              <div className="d-flex align-items-start gap-3">
-                <img src="/icons/ic-check.svg" alt="semina" />
-                <span>{data.keypoint}</span>
-              </div>
+              {data.keypoint.map((keypoint, i) => (
+                <div className="d-flex align-items-start gap-3">
+                  <img src="/icons/ic-check.svg" alt="semina" key={i} />
+                  <span>{keypoint}</span>
+                </div>
+              ))}
             </div>
             <div className="map-location">
               <h6>Event Location</h6>
@@ -67,7 +69,7 @@ export default function DetailPage({ data }) {
             {/* <!-- Ticket Information --> */}
             <h6>Get Ticket</h6>
             <div className="price my-3">
-              Rp {data.price === 0 ? "Free" : `${data.price}`}
+              {data.price === 0 ? "Free" : `Rp ${data.price}`}
               <span>/person</span>
             </div>
             <div className="d-flex gap-3 align-items-center card-details">

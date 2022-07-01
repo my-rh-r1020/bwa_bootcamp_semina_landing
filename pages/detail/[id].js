@@ -51,7 +51,5 @@ export async function getServerSideProps(context) {
   const reqServer = await getData(`api/v1/participants/detail-page/${context.params.id}`),
     res = reqServer.data;
 
-  console.log(res);
-
   return { props: { data: res } };
 }

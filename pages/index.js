@@ -45,7 +45,5 @@ export async function getServerSideProps(context) {
   const reqServer = await getData("api/v1/participants/landing-page"),
     res = reqServer.data;
 
-  console.log(res);
-
   return { props: { data: res } };
 }
