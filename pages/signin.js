@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Cookies from "js-cookie";
 
 // Import Components
 import Header from "../components/HeaderPage";
@@ -28,4 +29,13 @@ export default function Signin() {
       <BrandSection />
     </>
   );
+}
+
+// Check Token User
+export async function getServerSideProps(context) {
+  const { token } = context.req.cookies;
+
+  console.log(token);
+
+  return { props: { data: [] } };
 }

@@ -10,8 +10,23 @@ import StatisticsSection from "../../components/Statistics";
 import Footer from "../../components/Footer";
 import DetailPage from "../../components/DetailPage";
 import Navbar from "../../components/Navbar";
+import { useEffect, useState } from "react";
 
-export default function DetailEventPage({ data }) {
+export default function DetailEventPage({ dataDetail }) {
+  const [data, setData] = useState([]);
+
+  // Fetch API Landing
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getData("api/v1/participants/landing-page");
+
+        setData(res.data);
+      } catch (err) {}
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <Head>
@@ -29,10 +44,10 @@ export default function DetailEventPage({ data }) {
       </section>
 
       {/* Detail Content Section */}
-      <DetailPage data={data} />
+      <DetailPage data={dataDetail} />
 
       {/* Grow Today Section */}
-      <CardEventSection data={[]} subtitle="Next One" title="Similiar Events" />
+      <CardEventSection data={data} subtitle="Next One" title="Similiar Events" />
 
       {/* Stories Section */}
       <StoriesSection />
@@ -47,9 +62,9 @@ export default function DetailEventPage({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  // Fetch API
-  const reqServer = await getData(`api/v1/participants/detail-page/${context.params.id}`),
-    res = reqServer.data;
+  // Fetch API Detail
+  const reqDetail = await getData(`api/v1/participants/detail-page/${context.params.id}`),
+    resDetail = reqDetail.data;
 
-  return { props: { data: res } };
+  return { props: { dataDetail: resDetail } };
 }

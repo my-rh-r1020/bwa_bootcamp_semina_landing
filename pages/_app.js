@@ -2,6 +2,8 @@ import Head from "next/head";
 
 import "../styles/globals.css";
 import styles from "../styles/main.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -19,6 +21,7 @@ function MyApp({ Component, pageProps }) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
       </Head>
       <Component {...pageProps} />
+      <ToastContainer position="top-right" autoClose={2500} />
     </>
   );
 }
