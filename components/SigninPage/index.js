@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { postData } from "../../utils/fetchData";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 // Import Components
 import FormSignin from "../SigninForm";
@@ -26,19 +27,21 @@ export default function Signin() {
     try {
       const res = await postData(`api/v1/participants/auth/signin`, form);
 
+      // Create Token User
       Cookies.set("token", res.data.token, { expires: 3 });
 
+      // Redirect to Landing Page
       router.push("/");
 
-      // toast("🦄 Wow so easy!", {
-      //   position: "top-right",
-      //   autoClose: 2500,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      // });
+      toast.success("Successfully Sign In. Please Wait", {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (err) {}
   };
 

@@ -3,15 +3,20 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import moment from "moment";
+import Cookies from "js-cookie";
 
 // Import Components
 import Button from "../Button";
 
 export default function DetailPage({ data }) {
-  const router = useRouter();
+  const router = useRouter(),
+    token = Cookies.get("token");
 
   // Handle Submit
   const handleSubmit = (id) => {
+    // Cek Token User
+    if (!token) return router.push("/signin");
+
     router.push("/checkout");
   };
 

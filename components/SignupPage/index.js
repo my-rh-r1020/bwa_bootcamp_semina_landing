@@ -17,22 +17,25 @@ export default function Signup() {
   };
 
   // Handle Submit
-  const handleSubmit = async () => {
-    try {
-      const res = await postData(`api/v1/participants/auth/signup`, form);
-
-      // router.push("/signin");
-
-      toast.success("Registration Success. Please Sign In ...", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } catch (err) {}
+  const handleSubmit = () => {
+    postData(`api/v1/participants/auth/signup`, form)
+      .then((res) => {
+        if (res.data) {
+          // Message Toast
+          toast.success("Registration Success. Please Sign In ...", {
+            position: "top-right",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          // Redirect to Signin Page
+          router.push("/signin");
+        }
+      })
+      .catch((err) => {});
   };
 
   return (

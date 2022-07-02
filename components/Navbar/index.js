@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 // Libraries for SPA
 import Link from "next/link";
@@ -210,6 +211,16 @@ export default function Navbar({ signin }) {
   const handleSignout = () => {
     // Remove Token User From Signin
     Cookies.remove("token");
+
+    toast.success("Successfully Sign Out", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
     // Redirect to Signin Page
     router.push("/signin");
