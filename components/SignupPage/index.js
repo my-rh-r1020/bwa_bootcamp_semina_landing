@@ -1,10 +1,11 @@
 // Import Library
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { postData } from "../../utils/fetchData";
+import { toast } from "react-toastify";
 
 // Import Components
-import Button from "../Button";
-import TextInput from "../TextInput";
+import SignupForm from "../SignupForm";
 
 export default function Signup() {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", password: "", role: "" }),
@@ -16,43 +17,40 @@ export default function Signup() {
   };
 
   // Handle Submit
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    try {
+      const res = await postData(`api/v1/participants/auth/signup`, form);
+
+      // router.push("/signin");
+
+      toast.success("Registration Success. Please Sign In ...", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (err) {}
+  };
 
   return (
-    <section class="login header bg-navy">
-      <div class="container">
-        <div class="row row-cols-md-12 row-cols-1 d-flex justify-content-center align-items-center hero">
-          <div class="col-md-6">
-            <div class="hero-headline text-start">
-              Expand Your <br class="d-none d-md-block" />
+    <section className="login header bg-navy">
+      <div className="container">
+        <div className="row row-cols-md-12 row-cols-1 d-flex justify-content-center align-items-center hero">
+          <div className="col-md-6">
+            <div className="hero-headline text-start">
+              Expand Your <br className="d-none d-md-block" />
               Knowledge & Skills
             </div>
-            <p class="hero-paragraph text-start">
-              Kami menyediakan berbagai acara terbaik untuk membantu <br class="d-none d-lg-block" />
+            <p className="hero-paragraph text-start">
+              Kami menyediakan berbagai acara terbaik untuk membantu <br className="d-none d-lg-block" />
               anda dalam meningkatkan skills di bidang teknologi
             </p>
           </div>
-          <div class="col-md-6">
-            <form class="form-login d-flex flex-column mt-4 mt-md-0">
-              {/* <!-- First Name --> */}
-              <TextInput label="First Name" type="text" value={form.firstName} placeholder="First name here" onChange={handleChange} />
-
-              {/* <!-- Last Name --> */}
-              <TextInput label="Last Name" type="text" value={form.lastName} placeholder="Last name here" onChange={handleChange} />
-
-              {/* <!-- Email --> */}
-              <TextInput label="Email" type="email" value={form.email} placeholder="semina@bwa.com" onChange={handleChange} />
-
-              {/* <!-- Password --> */}
-              <TextInput label="Password (6 characters)" type="password" value={form.password} placeholder="Type your password" onChange={handleChange} />
-
-              {/* <!-- Role --> */}
-              <TextInput label="Role" type="text" value={form.role} placeholder="ex: Product Designer" onChange={handleChange} />
-
-              <div class="d-grid mt-2">
-                <Button className="btn-green" children="Sign Up" action={() => handleSubmit()} />
-              </div>
-            </form>
+          <div className="col-md-6">
+            <SignupForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} />
           </div>
         </div>
       </div>

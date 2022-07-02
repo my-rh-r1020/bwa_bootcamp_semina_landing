@@ -2,7 +2,7 @@ import React from "react";
 
 export default function StoriesSection() {
   return (
-    <section className="stories">
+    <section className="stories" id="stories">
       <div className="d-flex flex-row justify-content-center align-items-center container">
         <img src="/images/story.png" alt="semina" className="d-none d-lg-block" width="515" />
         <div className="d-flex flex-column">
