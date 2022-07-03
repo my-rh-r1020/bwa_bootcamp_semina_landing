@@ -8,9 +8,9 @@ export default function Checkout({ authenticated, data }) {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", role: "", paymentId: "" });
 
   // Handle Change
-  // const handleChange = (e) => {
-  //   setForm({ ...form, [e.target.name]: e.target.value });
-  // };
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   // Handle Submit
   const handleSubmit = () => {};
@@ -74,7 +74,7 @@ export default function Checkout({ authenticated, data }) {
           <div className="total-price">{data.price === 0 ? "Free" : `Rp ${data.price}`}</div>
         </div>
 
-        <CheckoutForm form={form} data={data} handleSubmit={handleSubmit} />
+        <CheckoutForm form={form} data={data} handleChange={handleChange} handleSubmit={handleSubmit} />
       </div>
     </section>
   );

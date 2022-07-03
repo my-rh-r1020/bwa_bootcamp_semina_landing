@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getData } from "../../utils/fetchData";
 import Button from "../Button";
 
@@ -6,13 +6,21 @@ import Button from "../Button";
 import TextInput from "../TextInput";
 
 export default function CheckoutForm({ form, data, handleChange, handleSubmit }) {
+  // Use State
+  const [payments, setPayments] = useState([]);
+
   // Fetch Data Payments
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getData("api/v1/payments");
-      console.log(res);
+      try {
+        const res = await getData("api/v1/participants/payments");
+
+        setPayments(res.data);
+      } catch (err) {}
     };
-  });
+
+    fetchData();
+  }, []);
 
   return (
     <form className="container form-semina">
@@ -27,24 +35,24 @@ export default function CheckoutForm({ form, data, handleChange, handleSubmit })
           {/* <!-- First Name --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">First Name</label>
-            <input type="text" placeholder="First name here" className="form-control" id="first_name" />
+            <input type="text" placeholder="First name here" className="form-control" name="firstName" value={form.firstName} onChange={handleChange} id="first_name" />
           </div>
           {/* <!-- Last Name --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Last Name</label>
-            <input type="text" placeholder="Last name here" className="form-control" id="last_name" />
+            <input type="text" placeholder="Last name here" className="form-control" name="lastName" value={form.lastName} onChange={handleChange} id="last_name" />
           </div>
         </div>
         <div className="row row-cols-lg-8 row-cols-md-2 row-cols-12 justify-content-center">
           {/* <!-- Email --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Email</label>
-            <input type="email" className="form-control" id="email_address" placeholder="semina@bwa.com" />
+            <input type="email" className="form-control" id="email_address" placeholder="semina@bwa.com" name="email" value={form.email} onChange={handleChange} />
           </div>
           {/* <!-- Role --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Role</label>
-            <input type="text" className="form-control" id="role" placeholder="Product Designer" />
+            <input type="text" className="form-control" id="role" placeholder="Product Designer" name="role" value={form.role} onChange={handleChange} />
           </div>
         </div>
       </div>
@@ -60,16 +68,18 @@ export default function CheckoutForm({ form, data, handleChange, handleSubmit })
             </div>
           </div>
           <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-center gy-4 gy-md-0">
-            <div className="col-lg-4">
-              <label className="payment-radio h-100 d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center gap-4">
-                  <img src="/icons/ic-mastercard.svg" alt="" />
-                  <div>Mastercard</div>
-                </div>
-                <input type="radio" checked="checked" name="radio" />
-                <span className="checkmark"></span>
-              </label>
-            </div>
+            {payments.map((payment, i) => (
+              <div className="col-lg-4" key={payment._id}>
+                <label className="payment-radio h-100 d-flex justify-content-between align-items-center">
+                  <div className="d-flex align-items-center gap-4">
+                    <img src={`${process.env.NEXT_PUBLIC_API_PAYMENTS}/${payment.imageUrl}`} alt="" />
+                    <div>{payment.type}</div>
+                  </div>
+                  <input type="radio" checked="checked" name="radio" onChange={handleChange(i)} />
+                  <span className="checkmark"></span>
+                </label>
+              </div>
+            ))}
             <div className="col-lg-4">
               <label className="payment-radio h-100 d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center gap-4">
