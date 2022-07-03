@@ -13,11 +13,11 @@ export default function DetailPage({ data }) {
     token = Cookies.get("token");
 
   // Handle Submit
-  const handleSubmit = (id) => {
+  const handleSubmit = () => {
     // Cek Token User
     if (!token) return router.push("/signin");
 
-    router.push("/checkout");
+    router.push(`/checkout/${data._id}`);
   };
 
   return (
