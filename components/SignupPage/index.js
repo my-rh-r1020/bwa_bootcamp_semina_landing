@@ -22,7 +22,7 @@ export default function Signup() {
       .then((res) => {
         if (res.data) {
           // Message Toast
-          toast.success("Registration Success. Please Sign In ...", {
+          toast.success("Registration is Success. Please Sign In ...", {
             position: "top-right",
             autoClose: 2500,
             hideProgressBar: false,

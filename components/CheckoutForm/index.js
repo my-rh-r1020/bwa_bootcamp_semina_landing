@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { getData } from "../../utils/fetchData";
+import { getData, postData } from "../../utils/fetchData";
+import { useRouter } from "next/router";
+
 import Button from "../Button";
 
 // Import Components
 import TextInput from "../TextInput";
+import { toast } from "react-toastify";
 
-export default function CheckoutForm({ data, handleSubmit }) {
-  // Use State
-  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", role: "", paymentId: "" }),
+export default function CheckoutForm({ data }) {
+  const router = useRouter(),
+    // Use State
+    [form, setForm] = useState({ firstName: "", lastName: "", email: "", role: "", payment: "", event: router.query.id }),
     [payments, setPayments] = useState([]);
 
   console.log(form);
@@ -37,7 +41,7 @@ export default function CheckoutForm({ data, handleSubmit }) {
       if (payment.isChecked) paymentId = payment._id;
     });
 
-    setForm({ ...form, paymentId: paymentId });
+    setForm({ ...form, payment: paymentId });
   }, [payments]);
 
   // Handle Change
@@ -62,6 +66,34 @@ export default function CheckoutForm({ data, handleSubmit }) {
     // console.log("Temp [i]", _temp[i]);
   };
 
+  // Handle Submit
+  const handleSubmit = async () => {
+    try {
+      let payload = {
+        event: form.event,
+        payment: form.payment,
+        personalDetail: { firstName: form.firstName, lastName: form.lastName, email: form.email, role: form.role },
+      };
+
+      const res = await postData("api/v1/participants/checkout", payload);
+
+      if (res.data) {
+        // Message Toast
+        toast.success("Checkout Event is Success. Thank You", {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // Redirect to Landing Page
+        router.push("/");
+      }
+    } catch (err) {}
+  };
+
   return (
     <form className="container form-semina">
       {/* <!-- Personal Details --> */}
@@ -75,24 +107,24 @@ export default function CheckoutForm({ data, handleSubmit }) {
           {/* <!-- First Name --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">First Name</label>
-            <input type="text" placeholder="First name here" className="form-control" name="firstName" value={form.firstName} id="first_name" />
+            <input type="text" placeholder="First name here" className="form-control" name="firstName" value={form.firstName} onChange={handleChange} id="first_name" />
           </div>
           {/* <!-- Last Name --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Last Name</label>
-            <input type="text" placeholder="Last name here" className="form-control" name="lastName" value={form.lastName} id="last_name" />
+            <input type="text" placeholder="Last name here" className="form-control" name="lastName" value={form.lastName} onChange={handleChange} id="last_name" />
           </div>
         </div>
         <div className="row row-cols-lg-8 row-cols-md-2 row-cols-12 justify-content-center">
           {/* <!-- Email --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Email</label>
-            <input type="email" className="form-control" id="email_address" placeholder="semina@bwa.com" name="email" value={form.email} />
+            <input type="email" className="form-control" id="email_address" placeholder="semina@bwa.com" name="email" value={form.email} onChange={handleChange} />
           </div>
           {/* <!-- Role --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Role</label>
-            <input type="text" className="form-control" id="role" placeholder="Product Designer" name="role" value={form.role} />
+            <input type="text" className="form-control" id="role" placeholder="Product Designer" name="role" value={form.role} onChange={handleChange} />
           </div>
         </div>
       </div>
@@ -128,7 +160,7 @@ export default function CheckoutForm({ data, handleSubmit }) {
         {/* <button type="submit" className="btn-green">
               Pay Now
             </button> */}
-        <Button className="btn-green" children="Pay Now" action={handleSubmit} />
+        <Button className="btn-green" children="Pay Now" action={() => handleSubmit()} />
         <div>
           <img src="/icons/ic-secure.svg" alt="" />
           <span>Your payment is secure and encrypted</span>

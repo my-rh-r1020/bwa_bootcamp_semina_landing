@@ -5,9 +5,6 @@ import Button from "../Button";
 import CheckoutForm from "../CheckoutForm";
 
 export default function Checkout({ authenticated, data }) {
-  // Handle Submit
-  const handleSubmit = () => {};
-
   return (
     <section className="bg-navy">
       <div className="checkout container">
@@ -34,7 +31,7 @@ export default function Checkout({ authenticated, data }) {
           <div className="total-price">{data.price === 0 ? "Free" : `Rp ${data.price}`}</div>
         </div>
 
-        <CheckoutForm data={data} handleSubmit={handleSubmit} />
+        <CheckoutForm data={data} />
       </div>
     </section>
   );
