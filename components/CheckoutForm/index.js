@@ -5,22 +5,62 @@ import Button from "../Button";
 // Import Components
 import TextInput from "../TextInput";
 
-export default function CheckoutForm({ form, data, handleChange, handleSubmit }) {
+export default function CheckoutForm({ data, handleSubmit }) {
   // Use State
-  const [payments, setPayments] = useState([]);
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", role: "", paymentId: "" }),
+    [payments, setPayments] = useState([]);
 
-  // Fetch Data Payments
+  console.log(form);
+
+  // UseEffect Data Payments
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await getData("api/v1/participants/payments");
 
+        // Radio Button Checked
+        res.data.forEach((res) => {
+          res.isChecked = false;
+        });
+
         setPayments(res.data);
       } catch (err) {}
     };
-
     fetchData();
   }, []);
+
+  // UseEffect Payment Id
+  useEffect(() => {
+    let paymentId = "";
+
+    payments.filter((payment) => {
+      if (payment.isChecked) paymentId = payment._id;
+    });
+
+    setForm({ ...form, paymentId: paymentId });
+  }, [payments]);
+
+  // Handle Change
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Handle Change Payment
+  const handleChangePayment = (e, i) => {
+    // Change Status True - Selected Radio Button
+    const _temp = [...payments];
+    _temp[i].isChecked = e.target.checked;
+
+    // Change Status False - After Selected Radio Button
+    _temp.forEach((temp) => {
+      if (temp._id !== e.target.value) temp.isChecked = false;
+    });
+
+    setPayments(_temp);
+
+    // console.log("Temp?", _temp);
+    // console.log("Temp [i]", _temp[i]);
+  };
 
   return (
     <form className="container form-semina">
@@ -35,24 +75,24 @@ export default function CheckoutForm({ form, data, handleChange, handleSubmit })
           {/* <!-- First Name --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">First Name</label>
-            <input type="text" placeholder="First name here" className="form-control" name="firstName" value={form.firstName} onChange={handleChange} id="first_name" />
+            <input type="text" placeholder="First name here" className="form-control" name="firstName" value={form.firstName} id="first_name" />
           </div>
           {/* <!-- Last Name --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Last Name</label>
-            <input type="text" placeholder="Last name here" className="form-control" name="lastName" value={form.lastName} onChange={handleChange} id="last_name" />
+            <input type="text" placeholder="Last name here" className="form-control" name="lastName" value={form.lastName} id="last_name" />
           </div>
         </div>
         <div className="row row-cols-lg-8 row-cols-md-2 row-cols-12 justify-content-center">
           {/* <!-- Email --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Email</label>
-            <input type="email" className="form-control" id="email_address" placeholder="semina@bwa.com" name="email" value={form.email} onChange={handleChange} />
+            <input type="email" className="form-control" id="email_address" placeholder="semina@bwa.com" name="email" value={form.email} />
           </div>
           {/* <!-- Role --> */}
           <div className="mb-4 col-lg-4">
             <label className="form-label">Role</label>
-            <input type="text" className="form-control" id="role" placeholder="Product Designer" name="role" value={form.role} onChange={handleChange} />
+            <input type="text" className="form-control" id="role" placeholder="Product Designer" name="role" value={form.role} />
           </div>
         </div>
       </div>
@@ -69,30 +109,17 @@ export default function CheckoutForm({ form, data, handleChange, handleSubmit })
           </div>
           <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-center gy-4 gy-md-0">
             {payments.map((payment, i) => (
-              <div className="col-lg-4" key={payment._id}>
+              <div className="mb-4 col-lg-8" key={payment._id}>
                 <label className="payment-radio h-100 d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center gap-4">
-                    <img src={`${process.env.NEXT_PUBLIC_API_PAYMENTS}/${payment.imageUrl}`} alt="" />
+                    <img src={`${process.env.NEXT_PUBLIC_API_PAYMENTS}/${payment.imageUrl}`} alt="" width="25%" />
                     <div>{payment.type}</div>
                   </div>
-                  <input type="radio" checked="checked" name="radio" onChange={handleChange(i)} />
+                  <input type="radio" checked={payment.isChecked} name="radio" value={payment._id} onChange={(e) => handleChangePayment(e, i)} />
                   <span className="checkmark"></span>
                 </label>
               </div>
             ))}
-            <div className="col-lg-4">
-              <label className="payment-radio h-100 d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center gap-4">
-                  <img src="/icons/ic-sewallet.svg" alt="" />
-                  <div className="d-flex flex-column gap-1">
-                    Sewallet
-                    <span className="balance">Balance: $50,000</span>
-                  </div>
-                </div>
-                <input type="radio" name="radio" />
-                <span className="checkmark"></span>
-              </label>
-            </div>
           </div>
         </div>
       )}
