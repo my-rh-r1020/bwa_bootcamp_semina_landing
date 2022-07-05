@@ -29,3 +29,14 @@ export default function Signup() {
     </>
   );
 }
+
+// Check Token User
+export async function getServerSideProps(context) {
+  const { token } = context.req.cookies;
+
+  if (token) {
+    return { redirect: { destination: "/", permanent: false } };
+  }
+
+  return { props: { data: [] } };
+}

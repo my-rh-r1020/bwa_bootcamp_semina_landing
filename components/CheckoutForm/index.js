@@ -7,14 +7,13 @@ import Button from "../Button";
 // Import Components
 import TextInput from "../TextInput";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 export default function CheckoutForm({ data }) {
   const router = useRouter(),
     // Use State
     [form, setForm] = useState({ firstName: "", lastName: "", email: "", role: "", payment: "", event: router.query.id }),
     [payments, setPayments] = useState([]);
-
-  console.log(form);
 
   // UseEffect Data Payments
   useEffect(() => {
@@ -75,7 +74,7 @@ export default function CheckoutForm({ data }) {
         personalDetail: { firstName: form.firstName, lastName: form.lastName, email: form.email, role: form.role },
       };
 
-      const res = await postData("api/v1/participants/checkout", payload);
+      const res = await postData("api/v1/participants/checkout", payload, Cookies.get("token"));
 
       if (res.data) {
         // Message Toast
@@ -89,7 +88,7 @@ export default function CheckoutForm({ data }) {
           progress: undefined,
         });
         // Redirect to Landing Page
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (err) {}
   };
@@ -130,15 +129,15 @@ export default function CheckoutForm({ data }) {
       </div>
 
       {/* <!-- Payment Method --> */}
-      {data.price === 0 ? (
-        ""
-      ) : (
-        <div className="payment-method mt-4">
-          <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-lg-center">
-            <div className="form-title col-lg-8">
-              <h4>Payment Method</h4>
-            </div>
+      <div className="payment-method mt-4">
+        <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-lg-center">
+          <div className="form-title col-lg-8">
+            <h4>Payment Method</h4>
           </div>
+        </div>
+        {data.price === 0 ? (
+          ""
+        ) : (
           <div className="row row-cols-lg-8 row-cols-md-2 row-cols-1 justify-content-center gy-4 gy-md-0">
             {payments.map((payment, i) => (
               <div className="mb-4 col-lg-8" key={payment._id}>
@@ -153,13 +152,10 @@ export default function CheckoutForm({ data }) {
               </div>
             ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className="d-flex flex-column align-items-center footer-payment gap-4">
-        {/* <button type="submit" className="btn-green">
-              Pay Now
-            </button> */}
         <Button className="btn-green" children="Pay Now" action={() => handleSubmit()} />
         <div>
           <img src="/icons/ic-secure.svg" alt="" />

@@ -31,6 +31,14 @@ export default function CheckoutEvent({ data }) {
 }
 
 export async function getServerSideProps(context) {
+  // Check Token User
+  const { token } = context.req.cookies;
+
+  if (!token) {
+    return { redirect: { destination: "/signin", permanent: false } };
+  }
+
+  // Fetch API
   const reqChechout = await getData(`api/v1/participants/detail-page/${context.params.id}`),
     resCheckout = reqChechout.data;
 
