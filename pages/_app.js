@@ -13,7 +13,6 @@ function MyApp({ Component, pageProps }) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
         {/* SASS CSS */}
-        {/* <link rel="stylesheet" href="main.css" /> */}
         {/* <link rel="stylesheet" href={styles} /> */}
 
         {/* Script Responsive View */}
