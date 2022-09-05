@@ -23,7 +23,7 @@ export default function DetailPage({ data }) {
   return (
     <>
       <div className="preview-image bg-navy text-center">
-        <img src={`${process.env.NEXT_PUBLIC_API_COVER_EVENT}/${data.cover}`} className="img-content" alt="cover" />
+        <img src={`${process.env.NEXT_PUBLIC_API_STORAGE_DEV}/cover_event/${data.cover}`} className="img-content" alt="cover" />
       </div>
 
       <div className="details-content container">
@@ -64,7 +64,7 @@ export default function DetailPage({ data }) {
             {/* <!-- Speaker Information --> */}
             <h6>Your Speaker</h6>
             <div className="d-flex align-items-center gap-3 mt-3">
-              <img src={`${process.env.NEXT_PUBLIC_API_AVATAR}/${data?.speaker?.avatar}`} alt="avatar" width="60" />
+              <img src={`${process.env.NEXT_PUBLIC_API_STORAGE_DEV}/avatar/${data?.speaker?.avatar}`} alt="avatar" width="60" />
               <div>
                 <div className="speaker-name">{data?.speaker?.name}</div>
                 <span className="occupation">{data?.speaker?.role}</span>

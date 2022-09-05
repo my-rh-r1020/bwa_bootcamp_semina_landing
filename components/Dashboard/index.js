@@ -11,7 +11,7 @@ export default function DashboardPage({ data }) {
               {data.historyEvent.title}
             </div>
             <div className="event-details container d-flex flex-wrap justify-content-lg-center align-items-center gap-5">
-              <img src={`${process.env.NEXT_PUBLIC_API_COVER_EVENT}/${data.historyEvent.cover}`} className="event-image" alt="semina" />
+              <img src={`${process.env.NEXT_PUBLIC_API_STORAGE_DEV}/cover_event/${data.historyEvent.cover}`} className="event-image" alt="semina" />
               <div className="d-flex flex-column gap-3">
                 <h5>{data.historyEvent.tagline}</h5>
 

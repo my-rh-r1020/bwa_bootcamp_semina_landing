@@ -143,7 +143,7 @@ export default function CheckoutForm({ data }) {
               <div className="mb-4 col-lg-8" key={payment._id}>
                 <label className="payment-radio h-100 d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center gap-4">
-                    <img src={`${process.env.NEXT_PUBLIC_API_PAYMENTS}/${payment.imageUrl}`} alt="" width="25%" />
+                    <img src={`${process.env.NEXT_PUBLIC_API_STORAGE_DEV}/payments/${payment.imageUrl}`} alt="" width="25%" />
                     <div>{payment.type}</div>
                   </div>
                   <input type="radio" checked={payment.isChecked} name="radio" value={payment._id} onChange={(e) => handleChangePayment(e, i)} />

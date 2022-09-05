@@ -11,7 +11,7 @@ export default function Checkout({ authenticated, data }) {
         <div className="text-center checkout-title">{data.title}</div>
 
         <div className="event-details container d-flex flex-wrap justify-content-lg-center align-items-center gap-5">
-          <img src={`${process.env.NEXT_PUBLIC_API_COVER_EVENT}/${data.cover}`} className="event-image" alt="semina" />
+          <img src={`${process.env.NEXT_PUBLIC_API_STORAGE_DEV}/cover_event/${data.cover}`} className="event-image" alt="semina" />
           <div className="d-flex flex-column gap-3">
             <h5>{data.tagline}</h5>
 
