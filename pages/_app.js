@@ -16,8 +16,8 @@ function MyApp({ Component, pageProps }) {
         {/* <link rel="stylesheet" href={styles} /> */}
 
         {/* Script Responsive View */}
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" async></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" async></script>
       </Head>
       <Component {...pageProps} />
       <ToastContainer position="top-right" autoClose={2500} />
