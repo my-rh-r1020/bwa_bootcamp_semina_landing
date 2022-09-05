@@ -14,9 +14,13 @@ export default function FormSignin({ form, handleChange, handleSubmit, handleRou
       <TextInput label="Password (6 characters)" type="password" name="password" value={form.password} placeholder="Type your password" onChange={handleChange} />
 
       <div className="d-grid mt-2 gap-4">
-        <Button className="btn-green" action={handleSubmit} children="Sign In" />
+        <Button className="btn-green" action={handleSubmit}>
+          Sign In
+        </Button>
 
-        <Button action={handleRouter} className="btn-navy" children="Create New Account" />
+        <Button action={handleRouter} className="btn-navy">
+          Create New Account
+        </Button>
       </div>
     </form>
   );

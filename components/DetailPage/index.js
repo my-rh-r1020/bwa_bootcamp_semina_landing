@@ -87,7 +87,11 @@ export default function DetailPage({ data }) {
               <img src="/icons/ic-calendar.svg" alt="semina" /> {moment(data.date).format("DD MMMM YYYY")}
             </div>
 
-            {data.stock !== 0 && <Button className="btn-green" children="Join Now" action={() => handleSubmit()} />}
+            {data.stock !== 0 && (
+              <Button className="btn-green" action={() => handleSubmit()}>
+                Join Now
+              </Button>
+            )}
           </div>
         </div>
       </div>

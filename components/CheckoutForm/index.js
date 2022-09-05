@@ -156,7 +156,9 @@ export default function CheckoutForm({ data }) {
       </div>
 
       <div className="d-flex flex-column align-items-center footer-payment gap-4">
-        <Button className="btn-green" children="Pay Now" action={() => handleSubmit()} />
+        <Button className="btn-green" action={() => handleSubmit()}>
+          Pay Now
+        </Button>
         <div>
           <img src="/icons/ic-secure.svg" alt="" />
           <span>Your payment is secure and encrypted</span>

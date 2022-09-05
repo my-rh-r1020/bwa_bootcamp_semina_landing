@@ -23,7 +23,9 @@ export default function SignupForm({ form, handleChange, handleSubmit }) {
       <TextInput label="Role" type="text" name="role" value={form.role} placeholder="ex: Product Designer" onChange={handleChange} />
 
       <div className="d-grid mt-2">
-        <Button className="btn-green" children="Sign Up" action={handleSubmit} />
+        <Button className="btn-green" action={handleSubmit}>
+          Sign Up
+        </Button>
       </div>
     </form>
   );

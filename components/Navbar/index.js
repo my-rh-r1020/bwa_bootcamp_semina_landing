@@ -276,7 +276,9 @@ export default function Navbar({ signin }) {
                       <Link href="#">
                         <a className="dropdown-item">Rewards</a>
                       </Link>
-                      <Button className="dropdown-item" children="Sign Out" action={handleSignout} />
+                      <Button className="dropdown-item" action={handleSignout}>
+                        Sign Out
+                      </Button>
                     </ul>
                     {/* <!-- END: Dropdown Menu for Desktop --> */}
 
@@ -293,7 +295,9 @@ export default function Navbar({ signin }) {
                           <a className="list-group-item">Rewards</a>
                         </Link>
                         <li>
-                          <Button className="list-group-item" children="Sign Out" action={handleSignout} />
+                          <Button className="list-group-item" action={handleSignout}>
+                            Sign Out
+                          </Button>
                         </li>
                       </ul>
                     </div>
